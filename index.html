@@ -17,14 +17,16 @@
     />
 
     <title>Weather app</title>
-  </head>
+
   <body>
     <div class="container" style="width: 550px">
-      <form>
+      
+      <form id="form-input">
         <div class="input-group rounded">
           <input
             type="search"
             class="form-control rounded"
+            id="search-input"
             placeholder="Enter city"
             aria-label="Search"
             aria-describedby="search-addon"
@@ -35,11 +37,16 @@
         </div>
       </form>
       <div class="details">
-        <h1 style="font-weight: 500">Nairobi</h1>
-        <h2 style="font-weight: 300">Humidity: 20%</h2>
-        <h2 style="font-weight: 300">Wind: 50km/hr</h2>
+        <h1 style="font-weight: 550" id="current-city">Nairobi</h1>
+        <p id="current-date">Current time</p>
+        <h2 style="font-size: 24px">Humidity: 20%</h2>
+        <h2 style="font-size: 24px">Wind: 50km/hr</h2>
       </div>
-      <i class="fa-solid fa-cloud-sun current-weather-icon"><span>21°C</span></i>
+      <div class="current-weather-icon">
+        <i class="fa-solid fa-cloud-sun"></i>
+        <span id="current-temperature">21</span>
+        <span class="temperature"><a href="#" id="celcius-temp">℃</a>|<a href="#" id="farenheight-temp">℉</a></span>
+      </div>
 
       <div class="container text-center">
         <div class="row">
@@ -89,6 +96,6 @@
         </div>
       </div>
     </div>
-   <script src="src/index.js"></script>
+    <script src="src/index.js"></script>
   </body>
 </html>

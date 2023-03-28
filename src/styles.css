@@ -1,36 +1,40 @@
-body{
- background-color: #f5f2f0;
-}
 .container {
   background-color: #f5f2f0;
-  padding: 20px 0 0;
   margin-top: 50px;
   border-radius: 10px;
-  padding: 50px;
+  padding: 40px;
+  font-family: poppins;
 }
 /* .details {
-  font-size: 10px;
-  font-weight: 200;
-  font-size: 18px;
-} */
+   font-size: 10px;
+   font-weight: 200;
+   font-size: 18px;
+ } */
 .icon {
   display: block;
   color: #fdc500;
   font-size: 24px;
   left: 0px;
-  
 }
 .current-weather-icon {
   display: block;
   color: #fdc500;
   font-size: 24px;
-  padding-left: 400px;
+  padding-left: 330px;
   top: -100px;
   position: relative;
 }
-span{
+#current-temperature {
   color: rgb(33, 37, 41);
   font-weight: 100;
+  font-size: 35px;
+}
+.temperature a {
+  text-decoration: none;
   font-size: 20px;
-  padding: 10px;
+  color: black;
+}
+#current-date {
+  font-size: 20px;
+  font-family: roboto;
 }

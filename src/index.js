@@ -20,20 +20,85 @@ let weather = {
     humidity: 20,
   },
 };
-let city = prompt("Enter a city");
-if (weather[city] !== undefined) {
-  city = city.toLowerCase().trim();
-  let temperature = Math.round(weather[city].temp);
-  let farenheightTemperature = Math.round((temperature * 9) / 5 + 32);
-  let humidity = Math.round(weather[city].humidity);
+// let city = prompt("Enter a city");
+// if (weather[city] !== undefined) {
+//   city = city.toLowerCase().trim();
+//   let temperature = Math.round(weather[city].temp);
+//   let farenheightTemperature = Math.round((temperature * 9) / 5 + 32);
+//   let humidity = Math.round(weather[city].humidity);
 
-  alert(
-    `It is currently ${temperature}°C (${farenheightTemperature}°F) in ${city} with a humidity of ${humidity}%`
-  );
-} else if (city.length === 0) {
-  alert("Please enter a city");
-} else {
-  alert(
-    `Sorry, we don't know the weather for this city, try going to https://www.google.com/search?q=weather+${city}`
-  );
+//   alert(
+//     `It is currently ${temperature}°C (${farenheightTemperature}°F) in ${city} with a humidity of ${humidity}%`
+//   );
+// } else if (city.length === 0) {
+//   alert("Please enter a city");
+// } else {
+//   alert(
+//     `Sorry, we don't know the weather for this city, try going to https://www.google.com/search?q=weather+${city}`
+//   );
+// }
+function getDate() {
+  let date = new Date();
+  console.log(date);
+  let day = date.getDay();
+  console.log(day);
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let hours = date.getHours();
+  let minutes = date.getMinutes();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  } else {
+    hours = hours;
+  }
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  } else {
+    minutes = minutes;
+  }
+
+  let time = hours + ":" + minutes;
+  return `${days[day]} ${time}`;
+}
+
+let currentDate = document.querySelector("#current-date");
+currentDate.innerHTML = getDate();
+
+let formInput = document.querySelector("#form-input");
+formInput.addEventListener("submit", displayCity);
+
+function displayCity(event) {
+  event.preventDefault();
+  let city = document.querySelector("#search-input");
+  let currentCity = document.querySelector("#current-city");
+  currentCity.innerHTML = `${city.value}`;
+}
+
+let farenheightTemp = document.querySelector("#farenheight-temp");
+farenheightTemp.addEventListener("click", convertToFarenHeight);
+
+let celciusTemp = document.querySelector("#celcius-temp");
+celciusTemp.addEventListener("click", convertToCelcius);
+
+function convertToFarenHeight(event) {
+  event.preventDefault();
+  let currentTemperature = document.querySelector("#current-temperature");
+  let temperature = currentTemperature.innerHTML;
+  temperature = Number(temperature);
+  currentTemperature.innerHTML = Math.round((temperature * 9) / 5 + 32);
+}
+
+function convertToCelcius(event) {
+  event.preventDefault();
+  let currentTemperature = document.querySelector("#current-temperature");
+  let temperature = currentTemperature.innerHTML;
+  temperature = Number(temperature);
+  currentTemperature.innerHTML = 21;
 }
