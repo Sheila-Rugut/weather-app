@@ -39,9 +39,7 @@ let weather = {
 // }
 function getDate() {
   let date = new Date();
-  console.log(date);
   let day = date.getDay();
-  console.log(day);
   let days = [
     "Sunday",
     "Monday",
@@ -71,14 +69,46 @@ function getDate() {
 let currentDate = document.querySelector("#current-date");
 currentDate.innerHTML = getDate();
 
-let formInput = document.querySelector("#form-input");
-formInput.addEventListener("submit", displayCity);
+//Display weather information for current city
+let currentLocation = document.querySelector("#current-location-btn");
+currentLocation.addEventListener("click", displayCurrentLocation);
 
-function displayCity(event) {
+function displayCurrentLocation(event) {
   event.preventDefault();
-  let city = document.querySelector("#search-input");
-  let currentCity = document.querySelector("#current-city");
-  currentCity.innerHTML = `${city.value}`;
+  navigator.geolocation.getCurrentPosition(searchLocation);
+}
+function searchLocation(position) {
+  let apiKey = "b264d51220a11888b81121dbd035a53b";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(showWeather);
+}
+
+let formInput = document.querySelector("#form-input");
+formInput.addEventListener("submit", searchCity);
+
+function displayCity(city) {
+  let apiKey = "b264d51220a11888b81121dbd035a53b";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(showWeather);
+}
+function searchCity(event) {
+  event.preventDefault();
+  let city = document.querySelector("#search-input").value;
+  displayCity(city);
+}
+function showWeather(response) {
+  document.querySelector("#current-city").innerHTML = response.data.name;
+  document.querySelector("#current-temperature").innerHTML = Math.round(
+    response.data.main.temp
+  );
+  document.querySelector("#humidity").innerHTML = Math.round(
+    response.data.main.humidity
+  );
+  document.querySelector("#wind").innerHTML = Math.round(
+    response.data.wind.speed
+  );
+  document.querySelector("#description").innerHTML =
+    response.data.weather[0].main;
 }
 
 let farenheightTemp = document.querySelector("#farenheight-temp");
@@ -102,3 +132,4 @@ function convertToCelcius(event) {
   temperature = Number(temperature);
   currentTemperature.innerHTML = 21;
 }
+displayCity("New York");
