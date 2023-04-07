@@ -1,10 +1,19 @@
 .container {
   background-color: #f5f2f0;
   margin-top: 50px;
-  border-radius: 10px;
-  padding: 40px;
+  border-radius: 30px;
+  padding: 70px;
   font-family: poppins;
+  
+   /* background-image: url("https://media.istockphoto.com/id/1328689113/photo/summer-blue-sky-and-white-cloud-white-background-beautiful-clear-cloudy-in-sunlight-calm.jpg?b=1&s=170667a&w=0&k=20&c=zll8NetKpkVebLipZi-jmAAz56gMvPlRNtnHNVuip_k=");
+  background-repeat: no-repeat, repeat; */
+  
 }
+/* .text-center{
+  background-image: url("https://media.istockphoto.com/id/1328689113/photo/summer-blue-sky-and-white-cloud-white-background-beautiful-clear-cloudy-in-sunlight-calm.jpg?b=1&s=170667a&w=0&k=20&c=zll8NetKpkVebLipZi-jmAAz56gMvPlRNtnHNVuip_k=");
+  background-repeat: no-repeat, repeat;
+} */
+
 /* .details {
    font-size: 10px;
    font-weight: 200;
@@ -18,7 +27,6 @@
 }
 .current-weather-icon {
   display: block;
-  color: #fdc500;
   font-size: 24px;
   padding-left: 330px;
   top: -100px;
@@ -35,6 +43,20 @@
   color: black;
 }
 #current-date {
-  font-size: 20px;
+  font-size: 16px;
   font-family: roboto;
+}
+.temperature{
+  color: black;
+ 
+}
+ul li {
+  list-style: none;
+margin-left: -30px;
+font-size: 18px;
+
+}
+#description{
+  font-size: 16px;
+  padding-left: 50px;
 }
