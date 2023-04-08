@@ -58,3 +58,10 @@ font-size: 18px;
   font-size: 16px;
   padding-left: 50px;
 }
+.github-link{
+ text-align: center;
+ margin: 10px;
+}
+.github-link a{
+  text-decoration: none;
+}
