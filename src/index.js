@@ -1,42 +1,3 @@
-let weather = {
-  paris: {
-    temp: 19.7,
-    humidity: 80,
-  },
-  tokyo: {
-    temp: 17.3,
-    humidity: 50,
-  },
-  lisbon: {
-    temp: 30.2,
-    humidity: 20,
-  },
-  "san francisco": {
-    temp: 20.9,
-    humidity: 100,
-  },
-  oslo: {
-    temp: -5,
-    humidity: 20,
-  },
-};
-// let city = prompt("Enter a city");
-// if (weather[city] !== undefined) {
-//   city = city.toLowerCase().trim();
-//   let temperature = Math.round(weather[city].temp);
-//   let farenheightTemperature = Math.round((temperature * 9) / 5 + 32);
-//   let humidity = Math.round(weather[city].humidity);
-
-//   alert(
-//     `It is currently ${temperature}°C (${farenheightTemperature}°F) in ${city} with a humidity of ${humidity}%`
-//   );
-// } else if (city.length === 0) {
-//   alert("Please enter a city");
-// } else {
-//   alert(
-//     `Sorry, we don't know the weather for this city, try going to https://www.google.com/search?q=weather+${city}`
-//   );
-// }
 function getDate() {
   let date = new Date();
   let day = date.getDay();
@@ -83,24 +44,25 @@ function searchLocation(position) {
   axios.get(apiUrl).then(showWeather);
 }
 
+//Display weather info for searched city
 let formInput = document.querySelector("#form-input");
 formInput.addEventListener("submit", searchCity);
-
-function displayCity(city) {
-  let apiKey = "b264d51220a11888b81121dbd035a53b";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-  axios.get(apiUrl).then(showWeather);
-}
 function searchCity(event) {
   event.preventDefault();
   let city = document.querySelector("#search-input").value;
   displayCity(city);
 }
+function displayCity(city) {
+  let apiKey = "b264d51220a11888b81121dbd035a53b";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(showWeather);
+}
+
 function showWeather(response) {
+  console.log(response.data.weather);
   document.querySelector("#current-city").innerHTML = response.data.name;
-  document.querySelector("#current-temperature").innerHTML = Math.round(
-    response.data.main.temp
-  );
+  celsiusTemperature = Math.round(response.data.main.temp);
+  document.querySelector("#current-temperature").innerHTML = celsiusTemperature;
   document.querySelector("#humidity").innerHTML = Math.round(
     response.data.main.humidity
   );
@@ -109,27 +71,38 @@ function showWeather(response) {
   );
   document.querySelector("#description").innerHTML =
     response.data.weather[0].main;
+  document.querySelector("#icon");
+  setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
+  document
+    .querySelector("#icon")
+    .setAttribute("alt", response.data.weather[0].description);
 }
 
-let farenheightTemp = document.querySelector("#farenheight-temp");
-farenheightTemp.addEventListener("click", convertToFarenHeight);
+//convert celcius to fahrenheit
+let fahrenheitTemp = document.querySelector("#fahrenheit-temp");
+fahrenheitTemp.addEventListener("click", convertToFahrenheit);
 
-let celciusTemp = document.querySelector("#celcius-temp");
-celciusTemp.addEventListener("click", convertToCelcius);
+let celsiusTemperature = null;
 
-function convertToFarenHeight(event) {
+let celsiusTemp = document.querySelector("#celsius-temp");
+celsiusTemp.addEventListener("click", convertToCelsius);
+
+function convertToFahrenheit(event) {
   event.preventDefault();
+celsiusTemp.classList.remove("active")
+fahrenheitTemp.classList.add("active");
   let currentTemperature = document.querySelector("#current-temperature");
-  let temperature = currentTemperature.innerHTML;
-  temperature = Number(temperature);
-  currentTemperature.innerHTML = Math.round((temperature * 9) / 5 + 32);
+  currentTemperature.innerHTML = Math.round((celsiusTemperature * 9) / 5 + 32);
 }
 
-function convertToCelcius(event) {
+function convertToCelsius(event) {
   event.preventDefault();
+  fahrenheitTemp.classList.remove("active");
+  celsiusTemp.classList.add("active");
   let currentTemperature = document.querySelector("#current-temperature");
-  let temperature = currentTemperature.innerHTML;
-  temperature = Number(temperature);
-  currentTemperature.innerHTML = 21;
+  currentTemperature.innerHTML = celsiusTemperature;
 }
 displayCity("New York");

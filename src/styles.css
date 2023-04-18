@@ -1,47 +1,53 @@
+html,
+body {
+  height: 100vh;
+  margin: 0 auto;
+}
 .container {
+  width: 600px;
   background-color: #f5f2f0;
   margin-top: 50px;
-  border-radius: 30px;
-  padding: 70px;
+  border-radius: 15px;
+  padding: 60px 20px;
   font-family: poppins;
-  
-   background-image: url("https://images.unsplash.com/photo-1560837616-fee1f3d8753a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fGNsb3Vkc3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60");
-  background-repeat: no-repeat;
-color:white;
-  
-}
-/* .text-center{
-  background-image: url("https://media.istockphoto.com/id/1328689113/photo/summer-blue-sky-and-white-cloud-white-background-beautiful-clear-cloudy-in-sunlight-calm.jpg?b=1&s=170667a&w=0&k=20&c=zll8NetKpkVebLipZi-jmAAz56gMvPlRNtnHNVuip_k=");
-  background-repeat: no-repeat, repeat;
-} */
 
-/* .details {
-   font-size: 10px;
-   font-weight: 200;
-   font-size: 18px;
- } */
+  background-image: url("https://images.unsplash.com/photo-1548266652-99cf27701ced?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8Y2xvdWRzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60");
+  background-repeat: no-repeat;
+  color: white;
+}
+.search-button {
+  background-color: whitesmoke;
+  color: #19607d;
+  margin-left: 2px;
+}
+.search-button:hover {
+  background-color: #19607d;
+}
 .icon {
   display: block;
   color: #fdc500;
-  font-size: 24px;
+  font-size: 30px;
   left: 0px;
 }
-.current-weather-icon {
+.current-weather {
   display: block;
   font-size: 24px;
   padding-left: 330px;
-  top: -100px;
+  top: -120px;
   position: relative;
 }
 #current-temperature {
- 
   font-weight: 100;
   font-size: 35px;
 }
-.temperature a {
+.temperature a{
   text-decoration: none;
   font-size: 20px;
-  color: white;
+  cursor: default;
+  color: #dcb734;
+}
+.current-weather .active{
+ color: white;
 }
 #current-date {
   font-size: 16px;
@@ -50,18 +56,32 @@ color:white;
 
 ul li {
   list-style: none;
-margin-left: -30px;
-font-size: 18px;
-
+  margin-left: -30px;
+  font-size: 18px;
 }
-#description{
+
+#description {
   font-size: 16px;
   padding-left: 50px;
 }
-.github-link{
- text-align: center;
- margin: 10px;
+
+.col {
+  color: white;
+  background-color: whitesmoke;
+  display: block;
+  border-radius: 15px;
+  margin-left: 10px;
+  padding: 30px 0;
+  background-image: url("https://images.unsplash.com/photo-1548266652-99cf27701ced?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8Y2xvdWRzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60");
+  background-repeat: no-repeat;
+  margin: 3px;
+  text-align: center;
 }
-.github-link a{
+
+.github-link {
+  text-align: center;
+  margin: 10px;
+}
+.github-link a {
   text-decoration: none;
 }
