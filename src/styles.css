@@ -26,28 +26,28 @@ body {
 .icon {
   display: block;
   color: #fdc500;
-  font-size: 30px;
+  font-size: 24px;
   left: 0px;
 }
 .current-weather {
   display: block;
   font-size: 24px;
-  padding-left: 330px;
-  top: -120px;
+  padding-left: 270px;
+  top: -140px;
   position: relative;
 }
 #current-temperature {
   font-weight: 100;
   font-size: 35px;
 }
-.temperature a{
+.temperature a {
   text-decoration: none;
   font-size: 20px;
   cursor: default;
-  color: #dcb734;
+  color: #fdc500;
 }
-.current-weather .active{
- color: white;
+.current-weather .active {
+  color: white;
 }
 #current-date {
   font-size: 16px;
@@ -61,8 +61,9 @@ ul li {
 }
 
 #description {
-  font-size: 16px;
-  padding-left: 50px;
+  font-size: 20px;
+  padding-left: 110px;
+  margin-top: -20px;
 }
 
 .col {
