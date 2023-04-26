@@ -1,15 +1,16 @@
+let days = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+];
 function getDate() {
   let date = new Date();
   let day = date.getDay();
-  let days = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
+
   let hours = date.getHours();
   let minutes = date.getMinutes();
   if (hours < 10) {
@@ -79,6 +80,7 @@ function showWeather(response) {
   document
     .querySelector("#icon")
     .setAttribute("alt", response.data.weather[0].description);
+  displayForecast();
 }
 
 //convert celcius to fahrenheit
@@ -104,5 +106,31 @@ function convertToCelsius(event) {
   celsiusTemp.classList.add("active");
   let currentTemperature = document.querySelector("#current-temperature");
   currentTemperature.innerHTML = celsiusTemperature;
+}
+function displayForecast() {
+  let forecast = document.querySelector("#forecast");
+
+  let forecastHTML = `<div class="row">`;
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+      <div class="col">
+        <div class="forecast-date">${day}</div>
+        <img
+          src="http://openweathermap.org/img/wn/50d@2x.png"
+          alt=""
+          width="42"
+        />
+        <div class="forecast-temperature">
+          <span class="forecast-temperature-max"> 25° </span>
+          <span class="forecast-temperature-min"> 21° </span>
+        </div>
+      </div>
+  `;
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+  forecast.innerHTML = forecastHTML;
 }
 displayCity("New York");
