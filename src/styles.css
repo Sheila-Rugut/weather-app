@@ -23,7 +23,7 @@ body {
 .search-button:hover {
   background-color: #19607d;
 }
-.icon {
+.forecast-icon {
   display: block;
   color: #fdc500;
   font-size: 24px;
