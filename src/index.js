@@ -80,7 +80,7 @@ function showWeather(response) {
   document
     .querySelector("#icon")
     .setAttribute("alt", response.data.weather[0].description);
-  displayForecast();
+  getForecast(response.data.coord);
 }
 
 //convert celcius to fahrenheit
@@ -107,8 +107,16 @@ function convertToCelsius(event) {
   let currentTemperature = document.querySelector("#current-temperature");
   currentTemperature.innerHTML = celsiusTemperature;
 }
-function displayForecast() {
-  let forecast = document.querySelector("#forecast");
+function getForecast(coordinates) {
+  console.log(coordinates);
+  let apiKey = "b264d51220a11888b81121dbd035a53b";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
+}
+function displayForecast(response) {
+  let forecastElement = document.querySelector("#forecast");
+
+  
 
   let forecastHTML = `<div class="row">`;
   days.forEach(function (day) {
@@ -116,21 +124,22 @@ function displayForecast() {
       forecastHTML +
       `
       <div class="col">
-        <div class="forecast-date">${day}</div>
+        <div class="weather-forecast-date">${day}</div>
         <img
           src="http://openweathermap.org/img/wn/50d@2x.png"
           alt=""
           width="42"
         />
-        <div class="forecast-temperature">
-          <span class="forecast-temperature-max"> 25° </span>
-          <span class="forecast-temperature-min"> 21° </span>
+        <div class="weather-forecast-temperatures">
+          <span class="weather-forecast-temperature-max"> 18° </span>
+          <span class="weather-forecast-temperature-min"> 12° </span>
         </div>
       </div>
   `;
   });
 
   forecastHTML = forecastHTML + `</div>`;
-  forecast.innerHTML = forecastHTML;
+  forecastElement.innerHTML = forecastHTML;
+  console.log(forecastHTML);
 }
 displayCity("New York");
